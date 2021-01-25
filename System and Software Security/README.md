@@ -1,1 +1,1 @@
-
+Secure software design, memory and file system security, operating system security for various platforms. Program classification, anomaly detection, malware detection and analysis. Technical challenges and problems in securing operating systems and software. Classic and modern algorithms, models, principles, and tools for system and application software security. Actual security examples.
