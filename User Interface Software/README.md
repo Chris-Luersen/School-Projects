@@ -1,1 +1,1 @@
-
+Survey of software architectures to build user interfaces, particularly focused on graphical user interfaces. Includes the design and implementation of user interfaces, the use of object-oriented application frameworks, software architecture for command undo, document management, layout managers, customized components, and separation of concerns in user interface software architectures. Discussion of research and advanced topics in User Interface Software.
