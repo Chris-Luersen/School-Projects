@@ -1,0 +1,13 @@
+print blocks 
+add test1
+add test2
+add test3
+print blocks 
+add test4 
+delete test1
+update add test2<SEP>type<SEP>test
+print blocks 
+update delete test2<SEP>test<SEP>typetest 
+print blocks 
+update delete test2<SEP>Genre 
+print blocks 
