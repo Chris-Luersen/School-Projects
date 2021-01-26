@@ -1,1 +1,0 @@
-Computational approaches to address urban challenges; sensor network testbeds; algorithms for storing, processing, and mining data from urban settings; communicating patterns to decision makers; special focus on epidemiology, sustainability, transportation, social science, urban economics; case studies with applications.
