@@ -1,1 +1,1 @@
-
+Data structures and analysis of data structure and algorithm performance.  Sorting, searching, hashing, and advanced tree structures and algorithms.  File system organization and access methods.  Course projects develop advanced problem-solving, design, and implementation skills. Pre: Graduate standing in Computer Science and an undergraduate second semester programming course.
