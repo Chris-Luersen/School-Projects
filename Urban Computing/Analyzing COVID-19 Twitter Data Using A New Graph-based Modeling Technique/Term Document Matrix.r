@@ -1,0 +1,8 @@
+library(NLP)
+library(tm)
+x<- read.csv("/data/COVID-19_ToTDM.csv")
+require(tm)
+corp <- Corpus(DataframeSource(x))
+dtm <- DocumentTermMatrix(corp)
+dtm.matrix = as.matrix(dtm)
+write.csv((as.matrix(dtm)), "/results/COVID-19_TDM_Out.csv")
