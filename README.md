@@ -2,6 +2,8 @@ Course Summaries:
 
 Data Structues & Algorithm - Java/Software Development
 
+Social Media Anayltics - Machine Learning/Big Data
+
 Software Engineering - Full Stack (Updating)
 
 System and Software Security - Attack/Defense Research (Updating)
