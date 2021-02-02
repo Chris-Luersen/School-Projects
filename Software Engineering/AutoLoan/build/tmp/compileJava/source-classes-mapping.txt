@@ -1,2 +1,0 @@
-edu/vt/loan/AutoLoan.java
- edu.vt.loan.AutoLoan
