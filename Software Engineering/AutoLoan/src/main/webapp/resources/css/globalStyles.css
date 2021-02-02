@@ -1,0 +1,174 @@
+/*********************************************
+Cascading Style Sheets (CSS) Style Definitions
+Created by Osman Balci for the AutoLoan app.
+*********************************************/
+
+/*
+==================================================
+|   Redefine Styles of Some Standard HTML Tags   |
+==================================================
+*/
+html, body {
+    /*
+    -----------------------------------------------------------------------
+    To use a background color for your UI pages, uncomment the one you like 
+    from examples below or select one from the list of HTML colors at 
+    https://www.w3schools.com/colors/colors_names.asp
+    -----------------------------------------------------------------------
+    */
+    /* background-color: aliceblue;     */
+    /* background-color: azure;         */
+    /* background-color: beige;         */
+    /* background-color: gainsboro;     */
+    /* background-color: ivory;         */
+    /* background-color: linen;         */
+    background-color: oldlace;
+    /* background-color: papayawhip;    */
+    /* background-color: wheat;         */
+    /* background-color: powderblue;    */
+
+    width: 100%;                    /* Set page width horizontally 100% */
+    height: 100%;                   /* Set page height vertically 100% */
+}
+
+/* Style standard HTML tags body and paragraph p */
+body, p {
+    font-family: "Times New Roman", Times, Serif;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    color: black;
+}
+
+/* Style standard HTML tag header 1 */
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    color: maroon;
+}
+
+/*
+===============================
+|   Other Style Definitions   |
+===============================
+*/
+
+/* Proportionally scale the header image to be smaller when the page width decreases */
+.headerImage {
+    height: auto;
+    max-width: 100%;
+}
+
+/* Style p:panelGrid Column 1 */
+.panelGridColumn1 {
+    text-align: right;
+    background-color: bisque; 
+    white-space: nowrap;        /* Disallow line break */
+}
+
+/* Style p:panelGrid Column 2 */
+.panelGridColumn2 {
+    text-align: left;
+    background-color: blanchedalmond; 
+    white-space: nowrap;        /* Disallow line break */
+}
+
+/* Style the inputText in index and results */
+.loanText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: normal;
+    font-style: normal;
+    color: darkgreen;
+}
+
+/*
+=========================================
+|   Skinning PrimeFaces UI Components   |
+=========================================
+Check the documentation of a PrimeFaces UI element to identify
+which styles are used so that you can override them.
+
+You can also Inspect the UI element under your web browser
+to determine which CSS style is used so that you can override it. 
+
+Styles are applied in a cascading order. To make sure that a
+style is applied regardless of where the style is defined in the
+cascading hierarchy, use the !important attribute.
+*/
+
+/*
+----------------------------------
+Skinning PrimeFaces Growl Messages
+----------------------------------
+*/
+.ui-growl-item-container {
+    background: none !important;            /* Remove background gradient */
+    background-color: lightgray !important; /* Color background Light Gray */
+    opacity: 1.0  !important;               /* Remove background semi transparency */
+    box-shadow: none;                       /* Remove message box shadow */
+}
+.ui-shadow {
+    text-shadow: none;  /* Remove message text shadow */
+}
+.ui-growl-info {
+    font-size: 10pt !important;
+    color: darkgreen;   /* Color severity="info" message Summary text as Dark Green */
+}
+.ui-growl-warn {
+    font-size: 10pt !important;
+    color: darkblue;    /* Color severity="warn" (warning) message Summary text as Dark Blue */
+}
+.ui-growl-error {
+    font-size: 10pt !important;
+    color: purple;      /* Color severity="error" message Summary text as Purple */
+}
+.ui-growl-fatal {
+    font-size: 10pt !important;
+    color: darkred;     /* Color severity="fatal" message Summary text as Dark Red */
+}
+/* Close sticky="true" message box by clicking anywhere in the box */
+.ui-growl-icon-close {
+    width: 100%;
+    height: 100%;
+    background-image: none !important;
+}
+
+/*
+---------------------------
+Skinning PrimeFaces Buttons
+---------------------------
+*/
+
+/* 
+Style PrimeFaces ui-button, which is the base style for buttons such as
+p:commandButton, p:button, .ui-confirmdialog-yes, .ui-confirmdialog-no,
+.ui-fileupload-choose, .ui-fileupload-upload, .ui-fileupload-cancel
+*/
+.ui-button {
+    border-radius: 2em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10pt !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    text-decoration: none;
+    color: black;
+    padding-top: 3px !important; 
+    padding-bottom: 2px !important;
+    padding-left: 3px !important;       /* Leave space before the icon */
+}
+
+/*
+We use Font Awesome "SVG with JS" icons within buttons of type ui-button.
+Therefore, remove the default ui-icon showing in the ui-button background.
+*/
+.ui-button .ui-icon {
+    margin-top: -0.56em !important; 
+    text-indent: 0px !important;
+    background-image: none !important;
+    margin-left: 0.52em;                /* Leave space before the icon */
+}

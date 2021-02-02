@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Osman Balci on 2021.1.15
+  - Copyright © 2021 Osman Balci. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Session Expired</title>
+
+    <!--
+    =============================
+    *   Mobile Device Support   *
+    =============================
+    Instruct the web browser on how to control the page's dimensions
+    and scaling on mobile devices.
+
+    The viewport meta tag is given within the <head> element for proper rendering and
+    touch zooming on mobile devices. This tag must be used so that your pages are properly
+    displayed on mobile devices. Initially, the XHTML page is displayed on a mobile device
+    across its screen width at a 1:1 scale with no shrinking to fit to the screen size.
+    The user is allowed to zoom in or zoom out by default.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--
+    ================================
+    *   Handling Session Timeout   *
+    ================================
+    Show the sessionTimeout.xhtml page when user's session expires.
+    -->
+    <meta http-equiv="refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};
+              url=#{request.contextPath}/sessionTimeout.xhtml"/>
+
+    <!--
+    =============================
+    *   CSS for the Entire UI   *
+    =============================
+    The globalStyles CSS file is linked for styling and formatting the entire UI.
+    -->
+    <h:outputStylesheet library="css" name="globalStyles.css" />
+
+    <!--
+    ========================================
+    *   Font Awesome "SVG with JS" Icons   *
+    ========================================
+    The following enables the use of more than 1,200 "Scalable Vector Graphics (SVG) with
+    JavaScript (JS)" free icons. For details, see:
+    https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=svg-with-js
+    -->
+    <script defer='defer' src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+            integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+            crossorigin="anonymous">
+    </script>
+
+    <!--
+    =====================
+    *   Favorite Icon   *
+    =====================
+    A favicon (short for favorite icon), also known as a shortcut icon, website icon, tab icon,
+    URL icon or bookmark icon, is a file named favicon.ico See https://en.wikipedia.org/wiki/Favicon
+    The icon is displayed to the left of the page title on a tab in the Chrome web browser.
+    The link below enables all your UI pages to display the favorite icon.
+
+    Use EL to get the image file since it will be referenced by all UI pages.
+    -->
+    <link rel="shortcut icon" href="#{resource['images:favicon.ico']}" type="image/x-icon" />
+</h:head>
+<h:body>
+    <div align="center">
+        <br /><br /><br />
+        <h1>Your Session has Expired!</h1>
+
+    </div>
+</h:body>
+</html>
