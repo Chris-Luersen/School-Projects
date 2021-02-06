@@ -4,7 +4,7 @@ Data Structues & Algorithm - Java/Software Development
 
 Social Media Anayltics - Machine Learning/Big Data/Data Analytics (Updating)
 
-Software Engineering - Cloud Software Architecture (Updating)
+Software Engineering - Cloud Software Architecture
 
 System and Software Security - Attack/Defense Research (Updating)
 
