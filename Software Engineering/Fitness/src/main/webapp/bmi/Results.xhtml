@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Chris Luersen on 2021.2.7
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Results" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <div align="center">
+            <br />
+            <span class="headingText">Body Mass Index (BMI)</span>
+            <br /><br />
+
+            <h:form id="bmiResultsForm">
+                <!--
+                Display the BMI category image based on the bmiCategory value.
+                -->
+                <c:if test = "${personController.bmiCategory == 'Underweight'}">
+                    <h:graphicImage url="#{resource['images:bmi/underweight.png']}"
+                                    class="images" />
+                </c:if>
+                <c:if test = "${personController.bmiCategory == 'Normal Weight'}">
+                    <h:graphicImage url="#{resource['images:bmi/normalWeight.png']}"
+                                    class="images" />
+                </c:if>
+                <c:if test = "${personController.bmiCategory == 'Overweight'}">
+                    <h:graphicImage url="#{resource['images:bmi/overweight.png']}"
+                                    class="images" />
+                </c:if>
+                <c:if test = "${personController.bmiCategory == 'Obese'}">
+                    <h:graphicImage url="#{resource['images:bmi/obese.png']}"
+                                    class="images" />
+                </c:if>
+
+                <h1>Your BMI value is #{personController.bmiValue}</h1>
+                <h1>You are #{personController.bmiCategory}!</h1>
+
+                <br /><br />
+
+                <!--
+                *********************
+                *    BACK Button    *
+                *********************
+                -->
+                <!-- When the "Back" button is clicked on, the Calculate.xhtml page is shown. -->
+                <p:button outcome="/bmi/Calculate" value="Back"  icon="fas fa-arrow-left" />
+                &nbsp;&nbsp;
+
+                <!--
+                *********************
+                *   SUBMIT Button   *
+                *********************
+                -->
+                <!--
+                This PrimeFaces p:commandButton performs the form submission and invokes the
+                prepareEmailBody() method of the CDI-managed bean @Named personController
+                object on the server side. The prepareEmailBody() method composes the initial
+                content of the email message and shows the Email.xhtml facelets page.
+
+                p:commandButton does the form submission by initiating HTTP request/response
+                cycle from within this JSF page.
+
+                ajax="false" implies that only the HTTP request will be processed and
+                no response will come to this page.
+                -->
+                <p:commandButton id="submit" value="Email BMI Results"
+                                 action="#{personController.prepareEmailBody()}"
+                                 ajax="false" icon="far fa-envelope" />
+            </h:form>
+            <br /><br />
+        </div>
+    </ui:define>
+
+</ui:composition>
+<!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>
