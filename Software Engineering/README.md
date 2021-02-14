@@ -1,1 +1,9 @@
-Study of the principles and tools applicable to the methodical construction and controlled evolution of complex software systems. All phases of the life cycle are presented; particular attention focuses on the design, testing, and maintenance phases. Introduction to software project management. Attention to measurement models of the software process and product which allow quantitative assessment of cost, reliability, and complexity of software systems.
+**Software Engineering:**
+
+Data Structues & Algorithm - BST/External Sorting Algorithms/Graphs/Hashing
+
+Software Engineering - Cloud Software Architecture
+
+System and Software Security - Attack/Defense Research (Updating)
+
+User Interface Software - Front-end + Website(Django)
