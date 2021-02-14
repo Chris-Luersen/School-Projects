@@ -1,0 +1,46 @@
+
+insert r_r          -1 -20 3 4
+  insert rec        7 -8 1 3
+insert virtual_rec0 1 1 0 0
+insert virtual_REC0 0 0 11 0
+insert inExistRec_0 1 1 -1 -2
+
+ regionsearch   11 11                 0 0
+
+intersections
+
+dump
+
+search r_r
+
+remove r_r
+remove 1 1 0 0
+	
+regionsearch   -5 -5 20 20 
+insert c1	0 400 200 200
+insert c2 200  400 200 200
+insert c3 400 400 200 200
+insert c4 600 400 200 200
+insert c5 800 400 200 200
+insert d1	0 600 200 200
+insert d2 200 600 200 200
+insert d3 400 600 200 200
+insert d4 600 600 200 200
+insert d5 800 600 200 200
+insert e1	0 800 200 200
+insert e2 200 800 200 200
+insert e3 400 800 200 200
+insert e4 600 800 200 200
+insert e5 800 800 200 200
+
+insert b1	0 200 200 200
+insert b2 200  200 200 200
+insert b3 400 200 200 200
+
+insert a1	0 0 200 200
+insert a2 200  0 200 200
+insert a3 400 0 200 200
+
+
+insert int 100 100 400 400
+intersections

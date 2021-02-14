@@ -1,9 +1,0 @@
-add test1
-delete test2
-add test2
-delete test1
-add test3
-delete test3
-delete
-delete does not exist
-print hashtable

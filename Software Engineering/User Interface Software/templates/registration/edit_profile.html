@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    | Edit Settings
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+            <h1>Edit Settings</h1>
+            <br/><br/>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update Profile</button>
+                </form>
+            </div>
+    {% else %}
+        <h1>There's nothing here...</h1>
+        <img src="{% static 'images/error.gif' %}" alt="Error">
+    {% endif %}
+    <br/>
+{% endblock %}

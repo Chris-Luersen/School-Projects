@@ -1,0 +1,16 @@
+print hashtable
+print blocks 
+add test1 
+add test2
+print blocks 
+add test 
+update add test<SEP>type<SEP>test
+add test3
+delete test1
+update delete test <SEP>type
+print blocks 
+delete test
+delete test3
+print blocks 
+add test4
+print blocks

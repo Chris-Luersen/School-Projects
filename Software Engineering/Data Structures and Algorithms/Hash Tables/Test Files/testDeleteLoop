@@ -1,0 +1,4 @@
+add test1
+add test2
+delete does not exist
+print hashtable
