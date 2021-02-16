@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    | Edit Profile Page
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == profile.user.id %}
+            <h1>Edit Profile Page</h1>
+            <br/><br/>
+            <div class="form-group">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update Profile</button>
+                </form>
+            </div>
+        {% else %}
+            <h1>There's Nothing Here...</h1>
+            <img src="{% static 'images/error.gif' %}" alt="Error">
+        {% endif %}
+    {% else %}
+        <h1>There's nothing here...</h1>
+        <img src="{% static 'images/error.gif' %}" alt="Error">
+    {% endif %}
+    <br/>
+{% endblock %}
