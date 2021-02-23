@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Chris Luersen on 2021.2.23
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Country List" />
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <!-- In case of JSF validation error, set 'selected' to null in countryController -->
+            <c:if test="#{facesContext.validationFailed}">
+                ${countryController.unselect()}
+            </c:if>
+
+            <!-- Set 'selected' to null in countryController when the user refreshes / reloads this JSF page -->
+            <f:metadata>
+                <f:viewAction action="#{countryController.unselect()}" rendered="#{facesContext.postBack}" />
+            </f:metadata>
+
+            <div align="center" style="width:97%">
+
+                <h:form id="CountryListForm">
+                    <p:panel header="Country List">
+
+                        <p:dataTable id="datalist" value="#{countryController.items}" var="item"
+                                     selectionMode="single" selection="#{countryController.selected}"
+                                     reflow="true"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="5,10,20,30,50,70,90"
+                                     class="dataTable"
+                                     >
+
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton flagButton mapButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton flagButton mapButton"/>
+
+                            <!-- 
+                            Clicking the header of a column with 'sortBy' redisplays the table with that  
+                            column sorted in alphabetical order A to Z or numerically in ascending order. 
+                            Clicking it again reverses the order to Z to A or numerically in descending order.
+                            -->
+
+                            <!--
+                            *********************
+                            *    Country Name   *
+                            *********************
+                            -->
+                            <p:column sortBy="#{item.name}" headerText="Name">
+                                <h:outputText class="inputTextField" value="#{item.name}"/>
+                            </p:column>
+
+                            <!--
+                            *********************
+                            *    Country Flag   *
+                            *********************
+                            -->
+                            <p:column headerText="Flag" style="align-content: center; width:60px;">
+                                <img src="https://manta.cs.vt.edu/csd/flags/#{item.code}.png" 
+                                     alt="Country Flag" width="40" class="flagImageCenter"/>
+                            </p:column>
+
+                            <!--
+                            ******************************
+                            *    Country 2-letter Code   *
+                            ******************************
+                            -->
+                            <p:column sortBy="#{item.code}" headerText="Code"
+                                      style="text-align: center; width:60px;">
+                                <h:outputText class="inputTextField" value="#{item.code}"/>
+                            </p:column>
+
+                            <!--
+                            *********************
+                            *    Capital City   *
+                            *********************
+                            -->
+                            <p:column sortBy="#{item.capitalCity}" headerText="Capital City">
+                                <h:outputText class="inputTextField" value="#{item.capitalCity}"/>
+                            </p:column>
+
+                            <!--
+                            ***************************
+                            *    Country Population   *
+                            ***************************
+                            -->
+                            <p:column sortBy="#{item.population}"  headerText="Population"
+                                      style="text-align: right">
+                                <h:outputText class="inputTextField" value="#{item.population}">
+                                    <!-- Insert commas into population number as thousands separators -->
+                                    <f:convertNumber type="number" groupingUsed="true" />
+                                </h:outputText>
+                            </p:column>
+
+                            <!--
+                            ***************************
+                            *    Country Total Area   *
+                            ***************************
+                            -->
+                            <p:column sortBy="#{item.totalArea}"  headerText="Total Area"
+                                      style="text-align: right">
+                                <h:outputText class="inputTextField" value="#{item.totalArea}">
+                                    <!-- Insert commas into total area number as thousands separators -->
+                                    <f:convertNumber type="number" groupingUsed="true" />
+                                </h:outputText>
+                            </p:column>
+
+                            <!--
+                            ******************************
+                            *    Country Main Language   *
+                            ******************************
+                            -->
+                            <p:column sortBy="#{item.language}" headerText="Language">
+                                <h:outputText class="inputTextField" value="#{item.language}"/>
+                            </p:column>
+
+                            <!--
+                            *************************
+                            *    Country Currency   *
+                            *************************
+                            -->
+                            <p:column sortBy="#{item.currency}" headerText="Currency">
+                                <h:outputText class="inputTextField" value="#{item.currency}"/>
+                            </p:column>
+
+                            <br /><br />
+
+                            <!--
+                            The "footer" facet is defined for p:dataTable. See PrimeFaces User Guide.
+                            -->
+
+                            <f:facet name="footer">
+                                <!-- CREATE button -->
+                                <p:commandButton id="createButton" icon="fas fa-plus" value="Create"
+                                                 actionListener="#{countryController.prepareCreate}" 
+                                                 update=":CountryCreateForm" oncomplete="PF('CountryCreateDialog').show()"/>
+
+                                <!-- VIEW button -->
+                                <p:commandButton id="viewButton" icon="fas fa-eye" value="View"
+                                                 update=":CountryViewDlg" oncomplete="PF('CountryViewDialog').show()" 
+                                                 disabled="#{empty countryController.selected}"/>
+
+                                <!-- EDIT button -->
+                                <p:commandButton id="editButton" icon="fas fa-edit" value="Edit"
+                                                 update=":CountryEditDlg" oncomplete="PF('CountryEditDialog').show()" 
+                                                 disabled="#{empty countryController.selected}"/>
+
+                                <!-- **********************************************
+                                Display a Confirmation dialog for the DELETE button
+                                *********************************************** -->
+                                <p:commandButton id="deleteButton" icon="fas fa-trash-alt"  value="Delete"
+                                                 actionListener="#{countryController.destroy}" 
+                                                 update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage" 
+                                                 disabled="#{empty countryController.selected}">
+
+                                    <p:confirm header="Confirmation" 
+                                               message="Are you sure you want to permanently delete the selected country #{countryController.selected.name} from the database?" 
+                                               icon="fas fa-exclamation-triangle fa-2x" />
+                                </p:commandButton>
+
+                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade" >
+                                    <div align="center">
+                                        <!-- The value of the first button listed below will be shown as 
+                                        highlighted (default action) when displayed -->
+                                        <p:commandButton value="No" type="button" 
+                                                         class="ui-confirmdialog-no" icon="fas fa-window-close" />
+                                        &nbsp;
+                                        <p:commandButton value="Yes" type="button" 
+                                                         class="ui-confirmdialog-yes" icon="fas fa-check-square" />
+                                    </div>
+                                </p:confirmDialog>
+                                <!-- *******************************************
+                                End of Display of the DELETE Confirmation dialog 
+                                ******************************************** -->
+
+                                <!-- FLAG button -->
+                                <p:commandButton id="flagButton" icon="fas fa-flag" value="Flag" 
+                                                 update=":FlagViewDlg" oncomplete="PF('FlagViewDialog').show()" 
+                                                 disabled="#{empty countryController.selected}"/>
+
+                                <!-- MAP button -->
+                                <p:commandButton id="mapButton" icon="fas fa-globe" value="Map" 
+                                                 update=":MapViewDlg" oncomplete="PF('MapViewDialog').show()" 
+                                                 disabled="#{empty countryController.selected}"/>
+                            </f:facet>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+            </div>
+
+            <!-- 
+            Clicking the Create button displays the included 
+            Create.xhtml file in a dialog box on top of this page. 
+            -->
+            <ui:include src="/country/Create.xhtml"/>
+
+            <!-- 
+            Clicking the View button displays the included 
+            View.xhtml file in a dialog box on top of this page. 
+            -->
+            <ui:include src="/country/View.xhtml"/>
+
+            <!-- 
+            Clicking the Edit button displays the included 
+            Edit.xhtml file in a dialog box on top of this page. 
+            -->
+            <ui:include src="/country/Edit.xhtml"/>
+
+            <!-- 
+            =================================================================
+            |  Clicking the FLAG button in List.xhtml displays this Dialog  |
+            |  window showing the selected country's flag image.            |
+            =================================================================
+            -->
+            <p:dialog id="FlagViewDlg" widgetVar="FlagViewDialog" modal="true" resizable="false" 
+                      appendTo="@(body)" header="#{countryController.selected.name}">
+
+                <h:form id="FlagViewForm" class="ui-datatable-data">
+                    <div align="center">
+                        <img src="http://manta.cs.vt.edu/csd/flags/#{countryController.selected.code}.png" 
+                             alt="Country Flag" style="width:100%; max-width:400px; height:auto; border:none" />
+                        <br /><br />
+                        <h:panelGroup>
+                            <!-- CLOSE button -->
+                            <p:commandButton value="Close" onclick="PF('FlagViewDialog').hide()"
+                                             icon="fas fa-window-close"/>
+                        </h:panelGroup>
+                    </div>
+                </h:form>
+
+            </p:dialog>
+
+            <!-- 
+            =========================================================
+            |  Clicking the MAP button in List.xhtml displays this  |
+            |  Dialog window showing the selected country's map.    |
+            =========================================================
+            -->
+            <p:dialog id="MapViewDlg" widgetVar="MapViewDialog" modal="true" resizable="false"
+                      appendTo="@(body)" header="#{countryController.selected.name}">
+
+                <h:form id="MapViewForm">
+                    <!-- 
+                    We define the local variable countryArea and use it below as a method parameter.
+                    The local variable's value is set by the EL expression during view build time.
+                    -->
+                    <c:set var="countryArea" value="#{countryController.selected.totalArea}" scope="request" />
+
+                    <div align="center">
+                        <!--
+                        p:gmap is a map component integrated with Google Maps JavaScript API.
+                        See PrimeFaces User Guide for its documentation.
+                        
+                        You must register as Google developer and obtain an API key to use p:gmap
+                        by following the instructions in siteTemplate.xhtml
+                        -->
+                        <p:gmap center="#{countryController.getCountryLatLong()}" 
+                                zoom="#{countryController.getZoomLevel(countryArea)}" type="roadmap"
+                                style="width:600px;height:400px" />
+
+                        <br /><br />
+                        <h:panelGroup>
+                            <!-- CLOSE button -->
+                            <p:commandButton value="Close" onclick="PF('MapViewDialog').hide()" 
+                                             icon="fas fa-window-close"/>
+                        </h:panelGroup>
+                    </div>
+                </h:form>
+
+            </p:dialog>
+
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>

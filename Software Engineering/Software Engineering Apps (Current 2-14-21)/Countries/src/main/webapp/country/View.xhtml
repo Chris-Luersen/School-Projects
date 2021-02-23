@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Chris Luersen on 2021.2.23
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <!-- 
+        ==========================================================
+        |  Clicking the VIEW button in List.xhtml displays this  |
+        |  Dialog window showing the selected country's data.    |
+        ==========================================================
+        -->
+        <p:dialog id="CountryViewDlg" widgetVar="CountryViewDialog" modal="true" 
+                  resizable="false" appendTo="@(body)" header="#{countryController.selected.name}">
+
+            <h:form id="CountryViewForm" class="ui-datatable-data">
+                <div align="center">
+                    <!-- Display the selected country's flag image -->
+                    <img src="http://manta.cs.vt.edu/csd/flags/#{countryController.selected.code}.png" 
+                         alt="Country Flag" width="200" />
+                    
+                    <br /><br />
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2" 
+                                     rendered="#{countryController.selected != null}">
+
+                            <h:outputText value="Name:"/>
+                            <h:outputText value="#{countryController.selected.name}"/>
+
+                            <h:outputText value="Code:"/>
+                            <h:outputText value="#{countryController.selected.code}"/>
+
+                            <h:outputText value="Capital City:"/>
+                            <h:outputText value="#{countryController.selected.capitalCity}"/>
+
+                            <h:outputText value="Population:"/>
+                            <h:outputText value="#{countryController.selected.population}" >
+                                <!-- Insert commas into population number as thousands separators -->
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
+
+                            <h:outputText value="Total Area:"/>
+                            <h:outputText value="#{countryController.selected.totalArea}">
+                                <!-- Insert commas into total area number as thousands separators -->
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
+
+                            <h:outputText value="Language:"/>
+                            <h:outputText value="#{countryController.selected.language}"/>
+
+                            <h:outputText value="Currency:"/>
+                            <h:outputText value="#{countryController.selected.currency}"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGroup>
+                        <!-- CLOSE button -->
+                        <p:commandButton value="Close" onclick="PF('CountryViewDialog').hide()"
+                                         icon="fas fa-window-close" />
+                    </h:panelGroup>
+                </div>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

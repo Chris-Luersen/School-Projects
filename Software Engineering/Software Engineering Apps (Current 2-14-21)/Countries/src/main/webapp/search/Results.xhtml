@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Chris Luersen on 2021.2.23
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Search Results" />
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <h:form id="SearchResultsForm" class="ui-datatable-data">
+                <div align="center">
+                    <br />
+                    <h1>#{countrySearchController.name}</h1>
+                    <br />
+                    <!-- Display the found country's flag image -->
+                    <img src="#{countrySearchController.flagUrl}" width="400" alt="" />
+
+                    <br /><br />
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2">
+
+                            <h:outputText value="Country Full Name:"/>
+                            <h:outputText value="#{countrySearchController.name}"/>
+
+                            <h:outputText value="Country 2-Letter Code:"/>
+                            <h:outputText value="#{countrySearchController.alpha2Code}"/>
+
+                            <h:outputText value="Country 3-Letter Code:"/>
+                            <h:outputText value="#{countrySearchController.alpha3Code}"/>
+
+                            <h:outputText value="Country Capital City Name:"/>
+                            <h:outputText value="#{countrySearchController.capital}"/>
+
+                            <h:outputText value="Country Population:"/>
+                            <h:outputText value="#{countrySearchController.population}">
+                                 <!-- Insert commas into population number as thousands separators -->
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
+
+                            <h:outputText value="Country Latitude and Longitude:"/>
+                            <h:outputText value="(#{countrySearchController.latitude}, #{countrySearchController.longitude})"/>
+
+                            <h:outputText value="Country Area in Square Miles:"/>
+                            <h:outputText value="#{countrySearchController.area}">
+                                <!-- Insert commas into area number as thousands separators -->
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
+
+                            <h:outputText value="Country Currency Code:"/>
+                            <h:outputText value="#{countrySearchController.currencyCode}"/>
+
+                            <h:outputText value="Country Currency Name:"/>
+                            <h:outputText value="#{countrySearchController.currencyName}"/>
+
+                            <h:outputText value="Country Main Language:"/>
+                            <h:outputText value="#{countrySearchController.language}"/>
+
+                        </p:panelGrid>
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGroup>
+                        <!-- MAP button -->
+                        <p:commandButton value="Map" icon="fas fa-globe"
+                                         update=":MapViewDlg" oncomplete="PF('MapViewDialog').show()" />
+                        &nbsp;
+                        <!-- CLOSE button -->
+                        <p:button outcome="/index" value="Close" icon="fas fa-window-close"  />
+                    </h:panelGroup>
+                </div>
+            </h:form>
+
+            <!-- 
+            ============================================================
+            |  Clicking the MAP button in Results.xhtml displays this  |
+            |  Dialog window showing the selected country's map.       |
+            ============================================================
+            -->
+            <p:dialog id="MapViewDlg" widgetVar="MapViewDialog" modal="true" position="center"
+                      resizable="false" appendTo="@(body)"
+                      header="#{countrySearchController.name}">
+
+                <h:form id="MapViewForm">
+                    <div align="center">
+                        <!-- 
+                        We define the local variable countryArea and use it below as a method parameter.
+                        The local variable's value is set by the EL expression during view build time.
+                        -->
+                        <c:set var="countryArea" value="#{countrySearchController.area}" />
+                        
+                        <!--
+                        p:gmap is a map component integrated with Google Maps JavaScript API.
+                        See PrimeFaces User Guide for its documentation.
+                        
+                        You must register as Google developer and obtain an API key to use p:gmap
+                        by following the instructions in siteTemplate.xhtml
+                        -->
+                        <p:gmap center="#{countrySearchController.latitude}, #{countrySearchController.longitude}" 
+                                zoom="#{countryController.getZoomLevel(countryArea)}" type="roadmap"
+                                style="width:600px;height:400px" />
+
+                        <br /><br />
+                        <h:panelGroup>
+                            <!-- CLOSE button -->
+                            <p:commandButton value="Close" onclick="PF('MapViewDialog').hide()" 
+                                             icon="fas fa-window-close"/>
+                        </h:panelGroup>
+                    </div>
+                </h:form>
+
+            </p:dialog>
+
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>

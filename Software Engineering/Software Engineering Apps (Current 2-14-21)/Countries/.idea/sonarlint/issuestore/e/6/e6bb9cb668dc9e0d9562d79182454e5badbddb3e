@@ -1,0 +1,8 @@
+
+U	java:S107y"AConstructor has 8 parameters, which is greater than 7 authorized.(›ı›i
+W
+java:S1710"<Remove the 'NamedQueries' wrapper from this annotation group(®ëØº˚ˇˇˇˇ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(√öáÚ¸ˇˇˇˇ
+V	java:S125"<This block of commented-out lines of code should be removed.(å§ª¢ˇˇˇˇˇ
+I
+java:S1135Â"2Complete the task associated to this TODO comment.(™ÇŸï

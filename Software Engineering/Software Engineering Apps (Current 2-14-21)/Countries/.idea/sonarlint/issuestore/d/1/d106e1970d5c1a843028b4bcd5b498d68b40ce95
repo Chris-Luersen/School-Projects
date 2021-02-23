@@ -1,0 +1,19 @@
+
+CWeb:BoldAndItalicTagsCheck2"Replace this <i> tag by <em>.(¢ó¹Â
+C	Web:S1827")Remove this deprecated "width" attribute.(…ï”Œÿÿÿÿÿ
+>	Web:S1827")Remove this deprecated "align" attribute.(ë›ƒ‘
+>	Web:S1827;")Remove this deprecated "align" attribute.(„âéÐ
+MWeb:TableWithoutCaptionCheck" Add a description to this table.(…ï”Œÿÿÿÿÿ
+I	Web:S1827"/Remove this deprecated "cellpadding" attribute.(…ï”Œÿÿÿÿÿ
+C	Web:S1827,")Remove this deprecated "align" attribute.(´¹õµüÿÿÿÿ
+C	Web:S1827")Remove this deprecated "align" attribute.(…ï”Œÿÿÿÿÿ
+BWeb:BoldAndItalicTagsCheck."Replace this <i> tag by <em>.(Å¼Øt
+IWeb:PageWithoutTitleCheck"Add a <title> tag to this page.(–ªŸ´ûÿÿÿÿ
+?	Web:S1827;"*Remove this deprecated "valign" attribute.(„âéÐ
+Z	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(–ªŸ´ûÿÿÿÿ
+?	Web:S5256"%Add "<th>" headers to this "<table>".(…ï”Œÿÿÿÿÿ
+I	Web:S1827"/Remove this deprecated "cellspacing" attribute.(…ï”Œÿÿÿÿÿ
+CWeb:BoldAndItalicTagsCheck@"Replace this <i> tag by <em>.(šˆÒÁ
+D	Web:S1827,"*Remove this deprecated "valign" attribute.(´¹õµüÿÿÿÿ
+?	Web:S1827"*Remove this deprecated "valign" attribute.(ë›ƒ‘
+CWeb:BoldAndItalicTagsCheck0"Replace this <i> tag by <em>.(ð™ã¤

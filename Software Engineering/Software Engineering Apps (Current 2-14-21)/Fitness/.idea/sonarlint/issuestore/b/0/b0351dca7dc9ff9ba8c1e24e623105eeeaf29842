@@ -1,0 +1,6 @@
+
+¡
+java:S1130†"‰Remove the declaration of thrown exception 'javax.mail.internet.AddressException' which is a subclass of 'javax.mail.MessagingException'.(†µğ
+—
+java:S11860"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ú™”
+Q	java:S125 "<This block of commented-out lines of code should be removed.(¬ĞÓø

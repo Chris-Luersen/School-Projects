@@ -1,0 +1,11 @@
+
+‚
+java:S1319\"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¢¤¨g
+š
+java:S1319`"The type of the "currencyName_currencyId" object should be an interface such as "Map" rather than the implementation "HashMap".(¤Š¿ğúÿÿÿÿ
+k	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Š¿ğúÿÿÿÿ
+|	java:S116-"bRename this field "currencyName_currencyId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÔ¼óüÿÿÿÿ
+b	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢¤¨g
+h	java:S100`"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Š¿ğúÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(¶šù¼
+R	java:S125ú"<This block of commented-out lines of code should be removed.(ïï‡®

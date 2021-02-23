@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Chris Luersen on 2021.2.23
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <!--
+        ****************************************************************************
+        *   Clicking the BAR CHART button in CountryCharts.xhtml displays this     *
+        *   Dialog window showing the bar chart of the selected countries' data.   *
+        ****************************************************************************
+        -->
+        <p:dialog id="BarChartDlg" widgetVar="BarChartDialog" showEffect="fade" modal="true"
+                  position="center" width="80%" height="auto" resizable="true" 
+                  appendTo="@(body)" header="Country Bar Chart" >
+
+            <h:form id="BarChartForm">
+                <div align="center">
+                    <!-- 
+                    Create the Bar Chart in the barChartController bean and display it in this dialog
+                    -->
+                    <p:chart type="bar" model="#{barChartController.getBarModel()}" widgetVar="barChart"
+                             style="width:600px; height:400px;" />
+
+                    <br /><br />
+
+                    <!-- CLOSE button -->
+                    <p:commandButton value="Close" onclick="PF('BarChartDialog').hide()" 
+                                     styleClass="commandButton" icon="fas fa-window-close"/>
+                </div>
+            </h:form>
+
+        </p:dialog>
+
+        <!--
+        ********************************************************************************************
+        PrimeFaces p:chart uses jqPlot (http://www.jqplot.com/) JavaScript library to create charts.
+        
+        This JavaScript function barChartExtender() is created as an Extender and set in
+        BarChartController.java with
+        
+            model.setExtender("barChartExtender");
+        
+        for use to style the chart using the jqPlot properties listed at
+        (http://www.jqplot.com/docs/files/jqplot-core-js.html)
+        ********************************************************************************************
+        -->
+        <script type="text/javascript">
+            function barChartExtender() {
+                // this     ==> chart widget instance        
+                // this.cfg ==> options        
+
+                this.cfg.gridPadding = {
+                    top: 50, bottom: 50
+                };
+
+                this.cfg.title = {
+                    text: 'Country Bar Chart',
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                    fontSize: '14pt',
+                    textColor: '#800000'  // Maroon
+                };
+
+                this.cfg.legend = {
+                    show: true,
+                    placement: 'inside' // versus 'outside' of the chart
+                };
+
+                // Y Axis Styling
+                this.cfg.axes.yaxis.labelOptions = {
+                    fontFamily: '"Courier New", Courier, monospace',
+                    fontSize: '12pt',
+                    textColor: '#006400'  // Dark Green
+                };
+                this.cfg.axes.yaxis.tickOptions = {
+                    formatString: '%#d', // Display the number as integer
+                    fontFamily: '"Courier New", Courier, monospace',
+                    fontSize: '10pt',
+                    textColor: '#000000'  // Black
+                };
+
+                // X Axis Styling
+                this.cfg.axes.xaxis.labelOptions = {
+                    fontFamily: '"Courier New", Courier, monospace',
+                    fontSize: '12pt',
+                    textColor: '#006400'  // Dark Green
+                };
+                this.cfg.axes.xaxis.tickOptions = {
+                    fontFamily: '"Courier New", Courier, monospace',
+                    fontSize: '10pt',
+                    textColor: '#000000'  // Black
+                };
+            }
+        </script>
+
+    </ui:composition>
+</html>

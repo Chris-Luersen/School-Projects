@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Chris Luersen on 2021.2.23
+  - Copyright © 2021 Chris Luersen. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        
+        <!-- 
+        ===========================================================================
+        |  Selecting the COUNTRY SEARCH menu option displays this Dialog window   |
+        |  for the user to search a country by name, code, or capital city name.  |
+        ===========================================================================
+        -->
+        <p:dialog position="center center" id="CountrySearchDlg" widgetVar="CountrySearchDialog" 
+                  modal="true" resizable="false" appendTo="@(body)" header="Search Country" >
+
+            <h:form id="CountrySearchForm">
+                <p:panel>                
+                    <h:panelGrid columns="4">
+                        <h:outputLabel value="Search: " />
+                        <!-- 
+                        The user can search for a country with respect to:
+                            - Country Full Name
+                            - Country Code (2-letter or 3-letter ISO code)
+                            - Capital City Name
+                        -->
+                        <p:inputText id="searchString" value="#{countrySearchController.searchString}" 
+                                     required="true" requiredMessage="Please Enter a Search String!"
+                                     placeholder="Enter search string" >
+                            <f:validateLength minimum="2" />
+                        </p:inputText>
+
+                        <span id="space">&nbsp;</span>
+
+                        <!-- Search category is selected here. -->
+                        <p:selectOneMenu id="searchField" value="#{countrySearchController.searchField}"
+                                         required="true" requiredMessage="Please Select a Search Category!" >
+
+                            <f:selectItem itemLabel="Select Category"   itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="Country Full Name" itemValue="Country Full Name"/>
+                            <f:selectItem itemLabel="Country Code"      itemValue="Country Code"/>
+                            <f:selectItem itemLabel="Capital City Name" itemValue="Capital City Name"/>
+
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+
+                    <h:panelGroup>
+                        <br /><br />
+                        <div align="center">
+                            <!--
+                            Show the Results page while executing the performSearch() method of the backing bean.
+                            We cannot redirect to show the Results page from the backing bean because:
+                            
+                                (1) This commandButton submits the JSF Request.
+                                (2) Processing of the Request produces Request-Response cycle to obtain the JSON file from the API.
+                                (3) The Response for the first Request is lost.
+                            
+                            Therefore, we redirect to show the Results page on the client side as follows.
+                            The Results page will place a GET Request to get its values from the backing bean's properties.
+                            -->
+                            <p:commandButton value="Submit" icon="fas fa-arrow-up" 
+                                             update=":growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage" 
+                                             actionListener="#{countrySearchController.performSearch()}"
+                                             action="/search/Results?faces-redirect=true" 
+                                             onclick="PF('CountrySearchDialog').hide()" />
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="Cancel" onclick="PF('CountrySearchDialog').hide()"    
+                                             icon="fas fa-ban" immediate="true" />
+                        </div>
+                    </h:panelGroup>
+
+                </p:panel>
+            </h:form> 
+            
+        </p:dialog>
+
+    </ui:composition>
+</html>

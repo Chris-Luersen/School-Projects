@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <settings default="Luersen-Copyright">
+    <module2copyright>
+      <element module="All" copyright="Luersen-Copyright" />
+    </module2copyright>
+  </settings>
+</component>
